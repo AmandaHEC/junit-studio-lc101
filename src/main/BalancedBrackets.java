@@ -21,15 +21,34 @@ public class BalancedBrackets {
      * @param str - to be validated
      * @return true if balanced, false otherwise
      */
+//    public static boolean hasBalancedBrackets(String str) {
+//        int brackets = 0;
+//        for (char ch : str.toCharArray()) {
+//            if (ch == '[') {
+//                brackets++;
+//            } else if (ch == ']') {
+//                brackets--;
+//            }
+//        }
+//        return brackets == 0;
+//    }
+//}
     public static boolean hasBalancedBrackets(String str) {
+        boolean goodBalance = true;
+        int stackedForwardBrackets = 0;
         int brackets = 0;
         for (char ch : str.toCharArray()) {
             if (ch == '[') {
                 brackets++;
+                stackedForwardBrackets++;
             } else if (ch == ']') {
                 brackets--;
+                stackedForwardBrackets--;
+                if (stackedForwardBrackets < 0){
+                    goodBalance = false;
+                }
             }
         }
-        return brackets == 0;
+        return brackets == 0 && goodBalance;
     }
 }
